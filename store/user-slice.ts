@@ -17,10 +17,10 @@ export type UserSlice = User & UserActions;
 
 
 export const createUserSlice: StateCreator<UserSlice, [["zustand/immer", never]], [], UserSlice> = (set) => ({
-    address: '',
+    address: '123, Main St, Anytown USA',
     age: 0,
-    fullName: '',
-    userName: '',
+    fullName: 'John Doe',
+    userName: 'john_doe',
     //  update store in an immuatable way
     // setAddress: (address) => set((state) => ({...state, address})),
 
