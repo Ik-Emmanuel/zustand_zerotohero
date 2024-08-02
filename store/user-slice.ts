@@ -11,16 +11,17 @@ type User = {
 
 type UserActions = {
     setAddress: (address: string) => void;
+    fetchUser: () => Promise<void>;
 }
 
 export type UserSlice = User & UserActions;
 
 
 export const createUserSlice: StateCreator<UserSlice, [["zustand/immer", never]], [], UserSlice> = (set) => ({
-    address: '123, Main St, Anytown USA',
+    address: '',
     age: 0,
-    fullName: 'John Doe',
-    userName: 'john_doe',
+    fullName: '',
+    userName: '',
     //  update store in an immuatable way
     // setAddress: (address) => set((state) => ({...state, address})),
 
@@ -34,4 +35,14 @@ export const createUserSlice: StateCreator<UserSlice, [["zustand/immer", never]]
         // update other states here as well when address changes if needed
 
     }),
+    fetchUser: async () => {
+        // perform async operation to fetch data and then set data 
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        set({
+            address: '',
+            fullName: 'Joh Doe',
+            userName: 'JohDoe@test.com',
+            age: 32,
+        });
+    },
 })

@@ -1,4 +1,4 @@
-import { CartSlice } from "@/store/cart-slice copy";
+import { CartSlice } from "@/store/cart-slice";
 import { UserSlice } from "@/store/user-slice";
 
 // import all your slices here  joing with "&" e.g  export type Store = UserSlice & CartSlisce & OrderSlice ...;

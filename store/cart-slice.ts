@@ -6,7 +6,7 @@ import { StateCreator } from "zustand";
 
 type Cart = {
     products: CartProduct[];
-    totalPrice: number;
+    total: number;
 };
 
 type CartActions = {
@@ -23,7 +23,7 @@ export type CartSlice = Cart & CartActions;
 // initial state
 const initialState: Cart = {
     products: [],
-    totalPrice: 0,
+    total: 0,
 };
 
 export const createCartSlice: StateCreator<
@@ -71,7 +71,7 @@ export const createCartSlice: StateCreator<
         get().products.find((p: Product) => p.id === productId),
     setTotal: (total) =>
         set((state) => {
-            state.totalPrice = total;
+            state.total = total;
         }),
     reset: () => set(initialState),
 });

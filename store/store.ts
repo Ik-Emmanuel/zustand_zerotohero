@@ -5,11 +5,23 @@ import { Store } from "@/types/store";
 import { create } from "zustand";
 import { createUserSlice } from "@/store/user-slice";
 import { immer } from "zustand/middleware/immer";
-import { createCartSlice } from "./cart-slice copy";
+import { devtools, persist, subscribeWithSelector } from 'zustand/middleware';
+import { createCartSlice } from "./cart-slice";
 
 //...a = setter and getter utility that zustand create function provides 
 // immer is a middle ware from zustand that is used for handling complex nested state
-export const useStore = create<Store>()(immer((...a) => ({
-    ...createUserSlice(...a),
-    ...createCartSlice(...a),
-})))
+//@ts-ignore
+export const useStore = create<Store>()(
+    // persist is use to cache the data in session
+    // @ts-ignore
+    persist(subscribeWithSelector(
+        // @ts-ignore
+        immer((...a) => ({
+            ...createUserSlice(...a),
+            ...createCartSlice(...a),
+        }))
+    )
+        ,
+        { name: 'local-store' }
+    )
+)
